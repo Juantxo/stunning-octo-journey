@@ -10,43 +10,92 @@
 
 <body>
     <div id="wrap_all">
-
-
         <div class="container av-layout-grid-container">
-            <div class="row">
-                <dic class="col-3">
-                    <form>
-                        <label for="checkbox-radio-option-one" class="pure-checkbox">
-                            <input type="checkbox" id="checkbox-radio-option-one" value="" /> Here&#x27;s option
-                            one.</label>
-                        <label for="checkbox-radio-option-two" class="pure-radio">
-                            <input type="radio" id="checkbox-radio-option-two" name="optionsRadios" value="option1"
-                                checked="" />
-                            Here&#x27;s a
-                            radio button. You can choose this one..</label>
-                        <label for="checkbox-radio-option-three" class="pure-radio">
-                            <input type="radio" id="checkbox-radio-option-three" name="optionsRadios" value="option2" />
-                            ..Or
-                            this
-                            one!</label>
-                    </form>
+            <form action="" method="" target="_blank" class="diabetes-form" id="diabetes_form" name="diabetes_form">
+                <div class="row">
+                    <div class="col-6">
+                        <p class="form-title">¿Ha padecido alguna de las siguiente patologías?</p>
+                        <ul class="margin__top-s vertical">
+                            <li> <input type="checkbox" id="cbox1" name="cbox1" value="cbox1">Retinología</li>
+                            <li><input type="checkbox" id="cbox2" name="cbox2" value="cbox2">Neuropatía</li>
+                            <li><input type="checkbox" id="cbox3" name="cbox3" value="cbox3">Enfermedad coronaria
+                                (Angina, infarto
+                                aguado)</li>
+                            <li><input type="checkbox" id="cbox4" name="cbox4" value="cbox4">Enfermedad renal asociada
+                            </li>
+                            <li><input type="checkbox" id="cbox5" name="cbox5" value="cbox5">Enfermedad arterial
+                                asociada</li>
+                            <li><input type="checkbox" id="cbox6" name="cbox6" value="cbox6">Enfermedad arterial
+                                periférica</li>
+                            <li><input type="checkbox" id="cbox7" name="cbox7" value="cbox7">Accidente cerebrovascular
+                            </li>
+                            <li><input type="checkbox" id="cbox8" name="cbox8" value="cbox8">Ingreso hace menos de 6
+                                meses por una
+                                complicación</li>
+                        </ul>
 
-                </dic>
-                <dic class="col-3">
-                    Hello
+                    </div>
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="form-title">Sexo</p>
+                                <ul class="margin__top-xs vertical">
+                                    <li><input type="radio" id="male" name="gender" value="male"> <label
+                                            for="male">Hombre</label></li>
+                                    <li><input type="radio" id="female" name="gender" value="female"> <label
+                                            for="female">Mujer</label></li>
+                                </ul>
+                            </div>
+                            <div class="col-6">
+                                <p class="form-title">Fecha nacimiento</p>
 
-                </dic>
-                <dic class="col-3">
-                    Hello
+                                <input class="margin__top-s row" type="date" id="start" name="trip-start"
+                                    value="2021-01-01" min="1900-01-01" max="2021-01-01">
 
-                </dic>
-            </div>
+                            </div>
+
+                        </div>
 
 
-        </div>
-        <div class="footer">
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="form-title">Diabetes</p>
+                                <ul class="margin__top-xs vertical">
+                                    <li><input type="radio" id="t1" name="diabetes" value="t1"> <label for="t1">Tipo
+                                            I</label></li>
+                                    <li><input type="radio" id="t2" name="diabetes" value="t2"> <label for="t2">Tipo
+                                            II</label></li>
+                                </ul>
+                            </div>
+                            <div class="col-6">
+                                <p class="form-title">Antigüedad diabetes</p>
 
-            <div class=""></div>
+                                <p class="margin__top-xs"><small><label for="years_diabetes">Años desde
+                                            diagnóstico:</label></small>
+                                </p>
+
+                                <p class="margin__top-xs"><input type="number" id="years_diabetes" name="years_diabetes"
+                                        min="0" max="100"></p>
+
+
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+                <div class="send margin__top-m">
+
+                    <div class="">
+                        <p><input type="submit" value="Enviar datos"></p>
+                        <input type="reset" value="Restaurar formulario">
+                    </div>
+                </div>
+
+            </form>
         </div>
     </div>
 </body>
