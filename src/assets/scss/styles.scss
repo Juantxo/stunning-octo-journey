@@ -1,12 +1,27 @@
-* {
-  box-sizing: border-box;
-}
-.diabetes-form {
+.diabetes-calc {
+  * {
+    box-sizing: border-box;
+  }
+  .container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 50px;
+    clear: both;
+  }
+  .responsive .container {
+    max-width: 1480px;
+  }
+
+  font-size: 14px;
   p {
     font-size: 14px;
   }
   small {
     font-size: 12px;
+  }
+  hr.hr {
+    border-top: 1px dotted gray;
   }
 
   .row::after {
@@ -73,6 +88,10 @@
     margin-top: 42px;
   }
 
+  input[type="number"] {
+    width: 64px;
+    height: 32px;
+  }
   ul.vertical {
     width: 100%;
     background-color: transparent;
@@ -92,6 +111,17 @@
 
   ul.vertical li:hover {
     background-color: #f1f1f1; /* Dark grey background on mouse-over */
+  }
+
+  table.regular {
+    border-collapse: collapse;
+    width: 100%;
+    td,
+    th {
+      border: none;
+      text-align: left;
+      padding: 4px;
+    }
   }
 
   // pad
