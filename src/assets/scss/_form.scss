@@ -10,6 +10,7 @@
     display: block; /* Make the links appear below each other */
     padding: 8px; /* Add some padding */
     text-decoration: none; /* Remove underline from links */
+    list-style-type: none;
   }
 
   ul.vertical li {

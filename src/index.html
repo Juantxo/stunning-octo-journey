@@ -49,7 +49,8 @@
                             <div class="col-6">
                                 <p class="form-title">Sexo</p>
                                 <ul class="margin__top-xs vertical">
-                                    <li><input type="radio" id="male" name="gender" value="male" autocomplete="off">
+                                    <li><input type="radio" id="male" name="gender" value="male" autocomplete="off"
+                                            checked>
                                         <label for="male">Hombre</label></li>
                                     <li><input type="radio" id="female" name="gender" value="female" autocomplete="off">
                                         <label for="female">Mujer</label></li>
@@ -58,8 +59,8 @@
                             <div class="col-6">
                                 <p class="form-title">Fecha nacimiento</p>
 
-                                <input class="margin__top-s row" type="date" id="start" name="trip-start"
-                                    value="2021-01-01" min="1900-01-01" max="2021-01-01" autocomplete="off">
+                                <input class="margin__top-s row" type="date" id="birthday" name="birthday" value=""
+                                    autocomplete="off">
 
                             </div>
 
@@ -70,11 +71,11 @@
                             <div class="col-6">
                                 <p class="form-title">Diabetes</p>
                                 <ul class="margin__top-xs vertical">
-                                    <li><input type="radio" id="t1" name="diabetes" value="t1"> <label for="t1"
-                                            autocomplete="off">Tipo
+                                    <li><input type="radio" id="t1" name="diabetes" value="t1" autocomplete="off"
+                                            checked> <label for="t1">Tipo
                                             I</label></li>
-                                    <li><input type="radio" id="t2" name="diabetes" value="t2"> <label for="t2"
-                                            autocomplete="off">Tipo
+                                    <li><input type="radio" id="t2" name="diabetes" value="t2" autocomplete="off">
+                                        <label for="t2">Tipo
                                             II</label></li>
                                 </ul>
                             </div>
@@ -126,20 +127,21 @@
                         <table class="margin__top-xs regular">
                             <tr>
                                 <td>Cigarrillos</td>
-                                <td><input type="number" id="cigarette" name="cigarette" min="0" max="100"
+                                <td><input type="number" id="cigarettes" name="cigarettes" min="0" max="100"
                                         autocomplete="off">
                                 </td>
 
                             </tr>
                             <tr>
                                 <td>Puros</td>
-                                <td><input type="number" id="cigar" name="cigar" min="0" max="100" autocomplete="off">
+                                <td><input type="number" id="cigars" name="cigars" min="0" max="100" autocomplete="off">
                                 </td>
 
                             </tr>
                             <tr>
                                 <td>Pipa</td>
-                                <td><input type="number" id="pipe" name="pipe" min="0" max="50" autocomplete="off"></td>
+                                <td><input type="number" id="pipes" name="pipes" min="0" max="50" autocomplete="off">
+                                </td>
                             </tr>
                         </table>
 
@@ -151,19 +153,20 @@
                         <table class="margin__top-xs regular">
                             <tr>
                                 <td>Vinos</td>
-                                <td><input type="number" id="wine" name="wine" min="0" max="100" autocomplete="off">
+                                <td><input type="number" id="wines" name="wines" min="0" max="100" autocomplete="off">
                                 </td>
 
                             </tr>
                             <tr>
                                 <td>Cervezas</td>
-                                <td><input type="number" id="beer" name="beer" min="0" max="100" autocomplete="off">
+                                <td><input type="number" id="beers" name="beers" min="0" max="100" autocomplete="off">
                                 </td>
 
                             </tr>
                             <tr>
                                 <td>Licores</td>
-                                <td><input type="number" id="spirit" name="spirit" min="0" max="50" autocomplete="off">
+                                <td><input type="number" id="spirits" name="spirits" min="0" max="50"
+                                        autocomplete="off">
                                 </td>
                             </tr>
                         </table>
@@ -203,10 +206,10 @@
                         <small>Unidades día y/o antidiabéticos orales</small>
 
                         <ul class="margin__top-xs vertical">
-                            <li><input type="radio" id="ins1" name="insulin" value="ins1"> <label for="ins1"
-                                    autocomplete="off">Hasta 25</label></li>
-                            <li><input type="radio" id="ins2" name="insulin" value="ins2"> <label for="ins2"
-                                    autocomplete="off">Más de 25</label></li>
+                            <li><input type="radio" id="ins1" name="insulin" value="ins1" autocomplete="off" checked>
+                                <label for="ins1">Hasta 25</label></li>
+                            <li><input type="radio" id="ins2" name="insulin" value="ins2" autocomplete="off"> <label
+                                    for="ins2">Más de 25</label></li>
                         </ul>
                     </div>
 
@@ -215,22 +218,22 @@
                         <small>Milimol por litro (mmol/l)</small>
 
                         <ul class="margin__top-xs vertical">
-                            <li><input type="radio" id="hem1" name="hemoglobin" value="hem1"> <label for="hem1"
-                                    autocomplete="off">Menos de 7,0</label>
+                            <li><input type="radio" id="hem1" name="hemoglobin" value="hem1" autocomplete="off" checked>
+                                <label for="hem1">Menos de 7,0</label>
                             </li>
-                            <li><input type="radio" id="hem2" name="hemoglobin" value="hem2"> <label for="hem2"
-                                    autocomplete="off">de 7,1 a 7,5</label></li>
-                            <li><input type="radio" id="hem3" name="hemoglobin" value="hem3"> <label for="hem3"
-                                    autocomplete="off">de 7,6 a
+                            <li><input type="radio" id="hem2" name="hemoglobin" value="hem2" autocomplete="off"> <label
+                                    for="hem2">de 7,1 a 7,5</label></li>
+                            <li><input type="radio" id="hem3" name="hemoglobin" value="hem3" autocomplete="off"> <label
+                                    for="hem3">de 7,6 a
                                     8,0</label></li>
-                            <li><input type="radio" id="hem4" name="hemoglobin" value="hem4"> <label for="hem4"
-                                    autocomplete="off">de 8,1 a 9,0</label>
+                            <li><input type="radio" id="hem4" name="hemoglobin" value="hem4" autocomplete="off"> <label
+                                    for="hem4">de 8,1 a 9,0</label>
                             </li>
-                            <li><input type="radio" id="hem5" name="hemoglobin" value="hem5"> <label for="hem5"
-                                    autocomplete="off">de 9,1 a
+                            <li><input type="radio" id="hem5" name="hemoglobin" value="hem5" autocomplete="off"> <label
+                                    for="hem5">de 9,1 a
                                     10</label></li>
-                            <li><input type="radio" id="hem6" name="hemoglobin" value="hem6"> <label for="hem6"
-                                    autocomplete="off">Más de 10</label></li>
+                            <li><input type="radio" id="hem6" name="hemoglobin" value="hem6" autocomplete="off"> <label
+                                    for="hem6">Más de 10</label></li>
                         </ul>
                     </div>
                     <div class="col-4">
@@ -238,21 +241,21 @@
                         <small>Miligramos por decilitro (mg/dL)</small>
 
                         <ul class="margin__top-xs vertical">
-                            <li><input type="radio" id="cho1" name="cholesterol" value="cho1"> <label for="cho1"
-                                    autocomplete="off">Hasta 200</label>
+                            <li><input type="radio" id="cho1" name="cholesterol" value="cho1" autocomplete="off"
+                                    checked> <label for="cho1">Hasta 200</label>
                             </li>
-                            <li><input type="radio" id="cho2" name="cholesterol" value="cho2"> <label for="cho2"
-                                    autocomplete="off">de 201 a
+                            <li><input type="radio" id="cho2" name="cholesterol" value="cho2" autocomplete="off"> <label
+                                    for="cho2">de 201 a
                                     250</label></li>
-                            <li><input type="radio" id="cho3" name="cholesterol" value="cho3"> <label for="cho3"
-                                    autocomplete="off">de 251 a
+                            <li><input type="radio" id="cho3" name="cholesterol" value="cho3" autocomplete="off"> <label
+                                    for="cho3">de 251 a
                                     275</label></li>
-                            <li><input type="radio" id="cho4" name="cholesterol" value="cho4"> <label for="cho4"
-                                    autocomplete="off">de 276 a
+                            <li><input type="radio" id="cho4" name="cholesterol" value="cho4" autocomplete="off"> <label
+                                    for="cho4">de 276 a
                                     300</label>
                             </li>
-                            <li><input type="radio" id="cho5" name="cholesterol" value="cho5"> <label for="cho5"
-                                    autocomplete="off">Más de 301</label></li>
+                            <li><input type="radio" id="cho5" name="cholesterol" value="cho5" autocomplete="off"> <label
+                                    for="cho5">Más de 301</label></li>
                         </ul>
                     </div>
 
@@ -261,13 +264,14 @@
 
                 <div class="row send margin__top-m">
                     <div class="col-4">
-                        <input type="reset" value="Formulario" autocomplete="off">
+                        <input id="pdf_button" type="button" name='pdf_button' value="Formulario" autocomplete="off">
                     </div>
                     <div class="col-4">
-                        <input type="reset" value="Restaurar" autocomplete="off">
+                        <input id="reset_button" type="reset" name='reset_button' value="Restaurar" autocomplete="off">
                     </div>
                     <div class="col-4">
-                        <input type="submit" value="Enviar datos" autocomplete="off">
+                        <input id="submit_button" type="submit" name='submit_button' value="Enviar datos"
+                            autocomplete="off" disabled>
                     </div>
 
                 </div><!-- row -->
