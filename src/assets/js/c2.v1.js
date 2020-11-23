@@ -15,9 +15,10 @@
     return "This is the awesome c2 " + a + ' ' + b + "!";
   }
 
-  function addEventListenerList(list, event, fn) {
-    for (var i = 0, len = list.length; i < len; i++) {
-      list[i].addEventListener(event, fn, false);
+  function addEventListenerList(nodelist, event, fn) {
+    let e = event || window.event;
+    for (var i = 0, len = nodelist.length; i < len; i++) {
+      nodelist[i].addEventListener(e, fn, false);
     }
   }
 
@@ -36,14 +37,28 @@
     return Math.abs(age_dt.getUTCFullYear() - 1970);
   }
 
-
-
+  function isNumberKey(evt) {
+    let e = evt || window.event;
+    let y = e.currentTarget.value;
+    var charCode = (e.charCode) ? e.charCode : ((e.keyCode) ? e.keyCode :
+      ((e.which) ? e.which : 0));
+    // allow decimals
+    if (charCode > 31 && ((charCode != 46 || charCode != 44) && (charCode < 48 || charCode > 57))) {
+      e.preventDefault();
+      return false;
+    }
+    return true;
+  }
+  function cmToMeter(cm) {
+    return Number(cm) / 100;
+  }
 
   exports.sayHello = sayHello;
   exports.addEventListenerList = addEventListenerList;
   exports.calculate_age = calculate_age;
   exports.yearIsHigher = yearIsHigher;
-
+  exports.isNumberKey = isNumberKey;
+  exports.cmToMeter = cmToMeter;
 
   Object.defineProperty(exports, "__esModule", { value: true });
 });
