@@ -11,8 +11,8 @@
     "author": "Juantxo Cruz <jcruz16@gmail.com> (http://www.juantxocruz.com)",
     "license": "ISC",
     "devDependencies": {
-        "@babel/core": "^7.9.0",
-        "@babel/preset-env": "^7.9.0",
+        "@babel/core": "^7.12.9",
+        "@babel/preset-env": "^7.12.7",
         "browser-sync": "^2.26.7",
         "del": "^5.1.0",
         "gulp": "^4.0.2",

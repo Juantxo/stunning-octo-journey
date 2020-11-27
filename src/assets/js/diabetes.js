@@ -31,10 +31,6 @@
         footer: "NacionalRe"
     }
 
-
-
-
-
     // global results
     let _age = '';
     let _gender = formForm.elements['gender'].value;
@@ -93,10 +89,7 @@
         return emptyFields.length > 0 ? submitButton.disabled = false : submitButton.disabled = true
     }
 
-
-
     // Event listeners
-
 
     // Only numeric values on fields, no comma, no dot, no paste, no drop.
     function setNumericField() {
@@ -104,15 +97,23 @@
         this.c2.addEventListenerList(fields, "keypress", (e) => { this.c2.isNumberKey(e) });
         this.c2.addEventListenerList(fields, "paste", (e) => { e.preventDefault(); return false; });
         this.c2.addEventListenerList(fields, "drop", (e) => { e.preventDefault(); return false; });
+        this.c2.addEventListenerList(fields, "change", (e) => { toggleMandatoryMsg(e) });
     }
 
-
+    // we are here
+    function toggleMandatoryMsg(e) {
+        if (e.currentTarget.value !== "") {
+            document.getElementById(e.currentTarget.name + "_msg").style.display = "none";
+            return false;
+        }
+        document.getElementById(e.currentTarget.name + "_msg").style.display = "block";
+        return false;
+    }
     function initPathologies() {
         // 1. Pathologies
         let pathologyCheckBoxes = document.getElementsByName('cbox');
         this.c2.addEventListenerList(pathologyCheckBoxes, "click", (e) => { openModalWindow(e, pathologiesModalSetup) });
     }
-
 
     function initBirthday() {
         // 2. Birthday and age
@@ -120,12 +121,14 @@
         birthdayInput.onchange = (e) => {
             let date = new Date(e.currentTarget.value);
             if (!this.c2.yearIsHigher(date)) {
-                _age = this.c2.calculate_age(new Date(e.currentTarget.value))
+                _age = this.c2.calculate_age(new Date(e.currentTarget.value));
+                document.getElementById("birthday_msg").style.display = "none";
                 enableSubmitButton(numberFields);
             }
             else {
                 openModalWindow(e, birthdayModalSetup);
                 e.currentTarget.value = "";
+                document.getElementById("birthday_msg").style.display = "block";
             }
         }
     }
@@ -166,7 +169,6 @@
         else {
             input.value = "";
         }
-
     }
     function initNumericField(name) {
         let input = formForm.elements[name];
@@ -245,12 +247,23 @@
         initNumericField("systolic");
         initNumericField("diastolic");
     }
-    // submit
-    //formForm.onsubmit = function () {}
+
+    function initSubmit() {
+        // submit
+        formForm.onsubmit = (e) => {
+            e.preventDefault();
+            let x = this.c2.defaultSeparation;
+            let y;
+        }
+    }
+
 
     let init = () => {
         initForm();
         initModalWindow();
+        initSubmit();
+
+
     };
 
     init();

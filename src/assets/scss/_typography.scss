@@ -10,4 +10,11 @@
     font-size: 16px;
     font-weight: 700;
   }
+  p.mandatory {
+    font-size: 10px;
+    font-weight: 600;
+    margin-top: 4px;
+    color: $primary;
+    display: none;
+  }
 }
