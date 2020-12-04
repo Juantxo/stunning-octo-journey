@@ -15,6 +15,9 @@
     font-weight: 600;
     margin-top: 4px;
     color: $primary;
+    min-height: 22px;
+  }
+  p.mandatory span {
     display: none;
   }
 }

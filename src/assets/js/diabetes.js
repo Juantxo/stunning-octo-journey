@@ -59,6 +59,13 @@
     let _cholesterol = formForm.elements['cholesterol'].value;
 
 
+    let $diabetes = {
+        life: 0,
+        disability: 0,
+        accident: 0,
+        temporary: 0
+    }
+
     // MODAL WINDOW FUNC
     function drawModalWindowInnerHTML(message) {
         modal_header_span.innerHTML = message.header;
@@ -108,6 +115,11 @@
             if (nodeList[i].type === "checkbox" && nodeList[i].checked) {
                 document.getElementById(nodeList[i].name + "_msg").style.display = "block";
             }
+
+            if (nodeList[i].type === "radio" && nodeList.value === "") {
+                document.getElementById(nodeList[i].name + "_msg").style.display = "block";
+            }
+
             if ((nodeList[i].type === "date" || nodeList[i].type === "number") && nodeList[i].value === "") {
                 document.getElementById(nodeList[i].name + "_msg").style.display = "block";
             }
@@ -128,7 +140,7 @@
     }
 
     function toggleMandatoryMsg(e) {
-        if ((e.currentTarget.type === 'date' || e.currentTarget.type === "number") && e.currentTarget.value !== "") {
+        if ((e.currentTarget.type === 'date' || e.currentTarget.type === "number" || e.currentTarget.type === 'radio') && e.currentTarget.value !== "") {
             document.getElementById(e.currentTarget.name + "_msg").style.display = "none";
             return false;
         }
@@ -175,12 +187,15 @@
     function initRadioButtons(name) {
         let input = formForm.elements[name];
         this.c2.addEventListenerList(input, "change", (e) => {
+            toggleMandatoryMsg(e);
             switch (name) {
                 case 'gender':
                     _gender = e.currentTarget.value; // male, female
                     break;
                 case 'diabetes':
                     _diabetes = e.currentTarget.value; // t1, t2
+
+                    let x;
                     break;
                 case 'insulin':
                     _insulin = e.currentTarget.value; // ins1, ins2
@@ -214,6 +229,7 @@
             switch (name) {
                 case 'years_diabetes':
                     _yearsDiabetes = e.currentTarget.value; // string 
+                    $diabetes = this.c2.calcDiabetes(_diabetes, _yearsDiabetes);
                     break;
                 case 'weight':
                     _weight = e.currentTarget.value; // string 
@@ -291,10 +307,16 @@
         formForm.onsubmit = (e) => {
             e.preventDefault();
             let numericFields = formForm.querySelectorAll('input[type="number"]');
+            let genderField = formForm.elements['gender'];
             let pathologyFields = document.getElementsByName('cbox');
             let dateFields = formForm.querySelectorAll('input[type="date"]');
-            let x = this.c2.defaultSeparation;
+
             checkNodeFields(pathologyFields);
+            checkNodeFields(formForm.elements['gender']);
+            checkNodeFields(formForm.elements['diabetes']);
+            checkNodeFields(formForm.elements['insulin']);
+            checkNodeFields(formForm.elements['hemoglobin']);
+            checkNodeFields(formForm.elements['cholesterol']);
             checkNodeFields(numericFields);
             checkNodeFields(dateFields);
 

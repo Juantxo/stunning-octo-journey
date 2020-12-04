@@ -1,5 +1,6 @@
 .diabetes-calc {
-  input[type="number"] {
+  input[type="number"],
+  input[type="text"] {
     width: 64px;
     height: 32px;
   }
@@ -8,7 +9,7 @@
     background-color: transparent;
     color: inherit;
     display: block; /* Make the links appear below each other */
-    padding: 8px; /* Add some padding */
+    padding: 0px; /* Add some padding */
     text-decoration: none; /* Remove underline from links */
     list-style-type: none;
   }
