@@ -6,13 +6,6 @@
 }(this, function (exports) {
     'use strict';
 
-    let $diabetes = {
-        life: 0,
-        disability: 0,
-        accident: 0,
-        temporary: 0
-    }
-
 
     function defaultSeparation(a, b) {
         return a.parent === b.parent ? 1 : 2;
