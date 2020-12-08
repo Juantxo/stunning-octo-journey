@@ -1,11 +1,7 @@
 ((window, c2) => {
-    window["diabetes"] = {};
-    window["diabetes"]["mode"] = "mode";
-
 
     let formForm = document.forms["diabetes_form"];
-    const numberFields = ["birthday", "years_diabetes", "weight", "height", "body_mass", "cigarettes", "cigars", "pipes", "wines", "beers", "spirits", "systolic", "diastolic"];
-
+    //const numberFields = ["birthday", "years_diabetes", "weight", "height", "body_mass", "cigarettes", "cigars", "pipes", "wines", "beers", "spirits", "systolic", "diastolic"];
 
     let modalDiv = document.getElementById("modal_window");
     let submitButton = document.getElementById("submit_button");
@@ -30,8 +26,8 @@
         action: "Por favor, escoga una fecha de nuevo",
         footer: "NacionalRe"
     }
-    let dateRange = [13, 69];
-    let dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const dateRange = [13, 69];
+    const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
 
     let dateRangeModalSetup = {
