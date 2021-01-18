@@ -55,9 +55,11 @@
 
                                 <ul class="vertical">
                                     <li><input type="radio" id="male" name="gender" value="male" autocomplete="off">
-                                        <label for="male">Hombre</label></li>
+                                        <label for="male">Hombre</label>
+                                    </li>
                                     <li><input type="radio" id="female" name="gender" value="female" autocomplete="off">
-                                        <label for="female">Mujer</label></li>
+                                        <label for="female">Mujer</label>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="col-6">
@@ -85,10 +87,12 @@
                                 <ul class="vertical">
                                     <li><input type="radio" id="t1" name="diabetes" value="t1" autocomplete="off">
                                         <label for="t1">Tipo
-                                            I</label></li>
+                                            I</label>
+                                    </li>
                                     <li><input type="radio" id="t2" name="diabetes" value="t2" autocomplete="off">
                                         <label for="t2">Tipo
-                                            II</label></li>
+                                            II</label>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="col-6">
@@ -144,7 +148,7 @@
                                                 obligatorio.</small></span>&nbsp;</p>
 
                                 </td>
-                                <td><input type="text" id="body_mass" name="body_mass" min="0" max="50"
+                                <td><input class='bold' type="text" id="body_mass" name="body_mass" min="0" max="50"
                                         autocomplete="off" readonly></td>
                             </tr>
                         </table>
@@ -275,7 +279,8 @@
 
                         <ul class="vertical">
                             <li><input type="radio" id="ins1" name="insulin" value="ins1" autocomplete="off">
-                                <label for="ins1">Hasta 25</label></li>
+                                <label for="ins1">Hasta 25</label>
+                            </li>
                             <li><input type="radio" id="ins2" name="insulin" value="ins2" autocomplete="off"> <label
                                     for="ins2">Más de 25</label></li>
                         </ul>
@@ -354,7 +359,7 @@
         </div> <!-- CONTAINER -->
 
 
-        <div class="container">
+        <div id='result_container' class="container hidden">
             <div class="row">
                 <div class="col-12">
                     <p class="form-title">Resultado</p>
@@ -382,23 +387,29 @@
 
         </div>
 
+    </div>
 
 
-        <script type="application/javascript">
+    <script type="application/javascript">
 
-            let loadScripts = (sources) => {
-                sources.forEach(src => {
-                    let script = document.createElement('script');
-                    script.src = src;
-                    script.async = false; //<-- the important part
-                    document.body.appendChild(script); //<-- make sure to append to body instead of head 
-                });
-            }
+        let loadScripts = (sources) => {
+            sources.forEach(src => {
+                let script = document.createElement('script');
+                script.src = src;
+                script.async = false; //<-- the important part
+                document.body.appendChild(script); //<-- make sure to append to body instead of head 
+            });
+        }
 
-            loadScripts(["./assets/js/c2.v1.js?v=2020", "./assets/js/c2-calculators.v1.js?v=2020", "./assets/js/diabetes.js?v=2020"])
+        loadScripts([
+            "./assets/js/c2.v1.js?v=2020",
+            "./assets/js/diabetes_calc.js?v=2020",
+            "./assets/js/imc_calc.js?v=2020",
+            "./assets/js/diabetes_form.js?v=2020"
+        ])
 
 
-        </script>
+    </script>
 
 </body>
 

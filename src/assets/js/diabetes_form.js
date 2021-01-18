@@ -2,7 +2,7 @@
 
     let formForm = document.forms["diabetes_form"];
     //const numberFields = ["birthday", "years_diabetes", "weight", "height", "body_mass", "cigarettes", "cigars", "pipes", "wines", "beers", "spirits", "systolic", "diastolic"];
-
+    let resultContainer = document.getElementById("result_container");
     let modalDiv = document.getElementById("modal_window");
     let submitButton = document.getElementById("submit_button");
 
@@ -51,7 +51,7 @@
     let _yearsDiabetes = formForm.elements['years_diabetes'].value;
     let _weight = formForm.elements['weight'].value;
     let _height = formForm.elements['height'].value;
-    let _body_mass = formForm.elements['body_mass'].value;
+    let _imc = formForm.elements['body_mass'].value;
     let _cigarettes = formForm.elements['cigarettes'].value;
     let _cigars = formForm.elements['cigars'].value;
     let _pipes = formForm.elements['pipes'].value;
@@ -72,6 +72,12 @@
         temporary: 0
     }
     let $diabetesByAge = {
+        life: 0,
+        disability: 0,
+        accident: 0,
+        temporary: 0
+    }
+    let $imc = {
         life: 0,
         disability: 0,
         accident: 0,
@@ -232,12 +238,35 @@
         });
     }
 
+    function setImcColor(input, val) {
+        input.classList.remove("blue", "green", "red",);
+
+        if (val < 20) {
+            input.classList.add("blue");
+            return false;
+        }
+        if (val >= 20 && val <= 28) {
+            input.classList.add("green");
+            return false;
+        }
+        if (val > 28) {
+            input.classList.add("red");
+            return false;
+        }
+
+    }
+
     function setBodyMassField() {
         let input = formForm.elements['body_mass'];
         if (_weight !== "" && _height !== "") {
             let w = this.c2.cmToMeter(Number(_height));
-            let imc = Number(_weight) / (Number(w) * Number(w));
-            input.value = imc;
+            _imc = Number(_weight) / (Number(w) * Number(w));
+            input.value = _imc;
+            setImcColor(input, _imc);
+            // to move
+            $imc = this.c2.calcImc(_imc, Number(_age));
+            let x;
+
         }
         else {
             input.value = "";
@@ -323,6 +352,10 @@
         initNumericField("diastolic");
     }
 
+    function openResultContainer() {
+        resultContainer.classList.remove("hidden");
+
+    }
     function initSubmit() {
         // submit
         formForm.onsubmit = (e) => {
@@ -343,6 +376,10 @@
 
 
             if (fieldsOn()) {
+
+                // OPEN results
+                openResultContainer();
+
                 // we are here: THE CALCULATIONS
 
                 let ok;

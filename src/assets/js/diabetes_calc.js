@@ -11,6 +11,7 @@
         return a.parent === b.parent ? 1 : 2;
     }
 
+    // antigüedad vida, invalidez, accidente
     function calcDiabetesByYearsLife(type, years) {
         let result = 0;
 
@@ -38,7 +39,9 @@
         return result;
     }
 
-    function calcDiabetesByYearsTemp(type, years) {
+    // antigüedad ILT
+
+    function calcDiabetesByYearsILT(type, years) {
         let result = 0;
         if (type === 't1') {
 
@@ -81,15 +84,16 @@
     }
     function calcDiabetesByYears(type, years) {
         let diabetesByYearLife = calcDiabetesByYearsLife(type, years);
-        let diabetesByYearTemp = calcDiabetesByYearsTemp(type, years);
+        let diabetesByYearILT = calcDiabetesByYearsILT(type, years);
         return {
             life: diabetesByYearLife,
             disability: diabetesByYearLife,
             accident: diabetesByYearLife,
-            temporary: diabetesByYearTemp
+            temporary: diabetesByYearILT
         }
     }
 
+    // LIFE
     function calcDiabetesByAgeLife(type, age) {
         let result = 0;
         if (type === 't1') {
@@ -126,7 +130,7 @@
         return result;
 
     }
-
+    // INVALIDEZ Y ACCIDENTE
     function calcDiabetesByAgeDis(type, age) {
         let result = 0;
         if (type === 't1') {
@@ -145,21 +149,22 @@
         }
         return result;
     }
-    function calcDiabetesByAgeTemp(type, age) {
+    // TO BE DONE
+    function calcDiabetesByAgeILT(type, age) {
         return 0;
     }
 
     function calcDiabetesByAge(type, age) {
         let diabetesByAgeLife = calcDiabetesByAgeLife(type, age);
         let diabetesByAgeDis = calcDiabetesByAgeDis(type, age);
-        let diabetesByAgeTemp = calcDiabetesByAgeTemp(type, age);
+        let diabetesByAgILT = calcDiabetesByAgeILT(type, age);
 
         let x;
         return {
             life: diabetesByAgeLife,
             disability: diabetesByAgeDis,
             accident: diabetesByAgeDis,
-            temporary: diabetesByAgeTemp
+            temporary: diabetesByAgILT
         }
 
     }
