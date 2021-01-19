@@ -56,6 +56,7 @@
 
     // global results
     let _age = '';
+    let _date = formForm.elements['birthday'].value;
     let _gender = formForm.elements['gender'].value;
     let _diabetes = formForm.elements['diabetes'].value;
     let _yearsDiabetes = formForm.elements['years_diabetes'].value;
@@ -73,27 +74,8 @@
     let _insulin = formForm.elements['insulin'].value;
     let _hemoglobin = formForm.elements['hemoglobin'].value;
     let _cholesterol = formForm.elements['cholesterol'].value;
+    let _vars = {};
 
-    let _vars = {
-        age: _age,
-        gender: _gender,
-        diabetes: _diabetes,
-        yearsDiabetes: _yearsDiabetes,
-        weight: _weight,
-        height: _height,
-        imc: _imc,
-        cigarettes: _cigarettes,
-        cigars: _cigars,
-        pipes: _pipes,
-        wines: _wines,
-        beers: _beers,
-        spirits: _spirits,
-        systolic: _systolic,
-        diastolic: _diastolic,
-        insulin: _insulin,
-        hemoglobin: _hemoglobin,
-        cholesterol: _cholesterol
-    }
 
     let $result = {
         diabetesByYears: {
@@ -122,6 +104,30 @@
         cholesterol: 0
     };
 
+    function getVars() {
+        return {
+            date: _date,
+            age: _age,
+            gender: _gender,
+            diabetes: _diabetes,
+            yearsDiabetes: _yearsDiabetes,
+            weight: _weight,
+            height: _height,
+            imc: _imc,
+            cigarettes: _cigarettes,
+            cigars: _cigars,
+            pipes: _pipes,
+            wines: _wines,
+            beers: _beers,
+            spirits: _spirits,
+            systolic: _systolic,
+            diastolic: _diastolic,
+            insulin: _insulin,
+            hemoglobin: _hemoglobin,
+            cholesterol: _cholesterol
+        }
+    }
+
     // MODAL WINDOW FUNC
     function drawModalWindowInnerHTML(message) {
         modal_header_span.innerHTML = message.header;
@@ -145,6 +151,12 @@
         drawModalWindowInnerHTML(message);
         return;
     };
+
+
+    function openModalResults(event, vars, result) {
+        event.stopPropagation();
+        let x
+    }
 
 
     // CHECK ALL FIELDS FUNCTIONS
@@ -224,9 +236,9 @@
         // 2. Birthday and age
         let birthdayInput = formForm.elements['birthday'];
         birthdayInput.onblur = (e) => {
-            let date = new Date(e.currentTarget.value);
-            if (!this.c2.dateIsHigher(date)) {
-                if (this.c2.dateIsOnRange(dateRange, date)) {
+            _date = new Date(e.currentTarget.value);
+            if (!this.c2.dateIsHigher(_date)) {
+                if (this.c2.dateIsOnRange(dateRange, _date)) {
                     _age = this.c2.calculate_age(new Date(e.currentTarget.value));
                     document.getElementById("birthday_msg").style.display = "none";
                 } else {
@@ -328,7 +340,7 @@
                 case 'pipes':
                     _pipes = e.currentTarget.value; // string 
                     // to move
-                    $result.tabacoo = this.c2.calcTobacco(Number(_cigarettes), Number(_cigars), Number(_pipes));
+                    $result.tobacoo = this.c2.calcTobacco(Number(_cigarettes), Number(_cigars), Number(_pipes));
 
                     break;
                 case 'wines':
@@ -447,6 +459,7 @@
                 $result.hemoglobin = this.c2.calcHemoglobin(_hemoglobin);
                 $result.cholesterol = this.c2.calcCholesterol(_cholesterol);
 
+                _vars = getVars();
 
                 // OPEN results
                 openModalResults(e, _vars, $result);
