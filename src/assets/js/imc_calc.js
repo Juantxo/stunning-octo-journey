@@ -131,7 +131,7 @@
             life: imcLife,
             disability: imcLife,
             accident: imcLife,
-            temporary: imcILT
+            ilt: imcILT
         }
     }
 

@@ -3,15 +3,9 @@
     let formForm = document.forms["diabetes_form"];
     //const numberFields = ["birthday", "years_diabetes", "weight", "height", "body_mass", "cigarettes", "cigars", "pipes", "wines", "beers", "spirits", "systolic", "diastolic"];
     //let resultContainer = document.getElementById("result_container");
-    let modalDiv = document.getElementById("modal_window");
-    let modalResult = document.getElementById("modal_result");
+
     let submitButton = document.getElementById("submit_button");
 
-    let closeModalSpan = document.getElementsByClassName("close")[0];
-    let modal_header_span = document.getElementById("modal_header_span");
-    let modal_body1_span = document.getElementById("modal_body1_span");
-    let modal_body2_span = document.getElementById("modal_body2_span");
-    let modal_footer_span = document.getElementById("modal_footer_span");
 
 
     let pathologiesModalSetup = {
@@ -38,6 +32,9 @@
 
     const dateRange = [13, 69];
     const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const systolicRange = [65, 145];
+    const diastolicRange = [45, 95];
+
 
 
     let dateRangeModalSetup = {
@@ -82,19 +79,19 @@
             life: 0,
             disability: 0,
             accident: 0,
-            temporary: 0
+            ilt: 0
         },
         diabetesByAge: {
             life: 0,
             disability: 0,
             accident: 0,
-            temporary: 0
+            ilt: 0
         },
         imc: {
             life: 0,
             disability: 0,
             accident: 0,
-            temporary: 0
+            ilt: 0
         },
         tobacco: 0,
         alcohol: 0,
@@ -128,35 +125,6 @@
         }
     }
 
-    // MODAL WINDOW FUNC
-    function drawModalWindowInnerHTML(message) {
-        modal_header_span.innerHTML = message.header;
-        modal_body1_span.innerHTML = message.action;
-        modal_body2_span.innerHTML = message.content;
-        modal_footer_span.innerHTML = message.footer;
-        modalDiv.style.display = "block";
-    }
-
-    function openModalWindow(event, message) {
-        event.stopPropagation();
-        if (event.currentTarget.name === 'cbox') {
-            if (event.currentTarget.checked) {
-                let pathology = event.currentTarget.nextSibling.data;
-                message['action'] = pathology + "."
-                drawModalWindowInnerHTML(message);
-
-            }
-            return;
-        }
-        drawModalWindowInnerHTML(message);
-        return;
-    };
-
-
-    function openModalResults(event, vars, result) {
-        event.stopPropagation();
-        let x
-    }
 
 
     // CHECK ALL FIELDS FUNCTIONS
@@ -227,7 +195,7 @@
     function initPathologies() {
         // 1. Pathologies
         let pathologyCheckBoxes = document.getElementsByName('cbox');
-        this.c2.addEventListenerList(pathologyCheckBoxes, "click", (e) => { openModalWindow(e, pathologiesModalSetup) });
+        this.c2.addEventListenerList(pathologyCheckBoxes, "click", (e) => { this.c2.openModalWindow(e, pathologiesModalSetup) });
         this.c2.addEventListenerList(pathologyCheckBoxes, "change", (e) => { toggleMandatoryMsg(e) });
 
     }
@@ -242,13 +210,13 @@
                     _age = this.c2.calculate_age(new Date(e.currentTarget.value));
                     document.getElementById("birthday_msg").style.display = "none";
                 } else {
-                    openModalWindow(e, dateRangeModalSetup);
+                    this.c2.openModalWindow(e, dateRangeModalSetup);
                     e.currentTarget.value = "";
                     document.getElementById("birthday_msg").style.display = "block";
                 }
             }
             else {
-                openModalWindow(e, birthdayModalSetup);
+                this.c2.openModalWindow(e, birthdayModalSetup);
                 e.currentTarget.value = "";
                 document.getElementById("birthday_msg").style.display = "block";
             }
@@ -340,7 +308,7 @@
                 case 'pipes':
                     _pipes = e.currentTarget.value; // string 
                     // to move
-                    $result.tobacoo = this.c2.calcTobacco(Number(_cigarettes), Number(_cigars), Number(_pipes));
+                    $result.tobacco = this.c2.calcTobacco(Number(_cigarettes), Number(_cigars), Number(_pipes));
 
                     break;
                 case 'wines':
@@ -355,30 +323,32 @@
 
                     break;
                 case 'systolic':
+
+
                     _systolic = e.currentTarget.value; // string 
-                    if (parseInt(_systolic) > 145) {
+                    if (parseInt(_systolic) > systolicRange[1]) {
                         modalSetup.content = 'La tensión sistólica es muy alta para asegurar el riesgo.';
                         modalSetup.action = "Por favor, asegúrese de que la cifra es correcta."
-                        openModalWindow(e, modalSetup);
+                        this.c2.openModalWindow(e, modalSetup);
                     }
-                    if (parseInt(_systolic) < 65) {
+                    if (parseInt(_systolic) < systolicRange[0]) {
                         modalSetup.content = 'La tensión sistólica es muy baja para asegurar el riesgo.';
                         modalSetup.action = "Por favor, asegúrese de que la cifra es correcta."
-                        openModalWindow(e, modalSetup);
+                        this.c2.openModalWindow(e, modalSetup);
                     }
                     this.c2.setSystolicColors(formForm.elements['systolic'], _systolic);
                     break;
                 case 'diastolic':
                     _diastolic = e.currentTarget.value; // string 
-                    if (parseInt(_diastolic) > 95) {
+                    if (parseInt(_diastolic) > diastolicRange[1]) {
                         modalSetup.content = 'La tensión diastólica es muy alta para asegurar el riesgo.';
                         modalSetup.action = "Por favor, asegúrese de que la cifra es correcta."
-                        openModalWindow(e, modalSetup);
+                        this.c2.openModalWindow(e, modalSetup);
                     }
-                    if (parseInt(_diastolic) < 45) {
+                    if (parseInt(_diastolic) < diastolicRange[0]) {
                         modalSetup.content = 'La tensión diastólica es muy baja para asegurar el riesgo.';
                         modalSetup.action = "Por favor, asegúrese de que la cifra es correcta."
-                        openModalWindow(e, modalSetup);
+                        this.c2.openModalWindow(e, modalSetup);
                     }
                     this.c2.setDiastolicColors(formForm.elements['diastolic'], _diastolic);
                     // to move
@@ -394,12 +364,7 @@
 
 
 
-    // MODAL WINDOW
-    function initModalWindow() {
-        closeModalSpan.onclick = function () {
-            modalDiv.style.display = "none";
-        }
-    }
+
 
     function initForm() {
         setNumericField();
@@ -462,13 +427,13 @@
                 _vars = getVars();
 
                 // OPEN results
-                openModalResults(e, _vars, $result);
+                this.c2.openModalResults(e, _vars, $result);
 
                 // we are here: THE CALCULATIONS
 
                 let ok;
             } else {
-                openModalWindow(e, fieldsOffModalSetup)
+                this.c2.openModalWindow(e, fieldsOffModalSetup)
                 return false;
             }
         }
@@ -477,7 +442,7 @@
 
     let init = () => {
         initForm();
-        initModalWindow();
+        this.c2.initModalWindow();
         initSubmit();
     };
 

@@ -373,7 +373,7 @@
             <!-- Modal content -->
             <div class="modal-content">
                 <div class="modal-header">
-                    <span class="close">&times;</span>
+                    <span class="close" id="close_modal_info">&times;</span>
                     <h2 id="modal_header_span">Atención</h2>
                 </div>
                 <div class="modal-body">
@@ -393,51 +393,77 @@
             <!-- Modal content -->
             <div class="modal-content">
                 <div class="modal-header">
-                    <span class="close">&times;</span>
-                    <h2 id="modal_header_span">Atención</h2>
+                    <span class="close" id='close_modal_result'>&times;</span>
+                    <h2 id="modal_header_span">Resultados</h2>
                 </div>
                 <div class="modal-body">
-                    <p> <strong><span id="modal_body1_span">Patología</span></strong></p>
-                    <p> <span id="modal_body2_span">Patología</span></p>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-3">
+
+                                <div class="result-icon life">
+                                </div>
+                                <h2>Fallecimiento</h2>
+                            </div>
+                            <div class="col-3">
+                                <div class="result-icon disability">
+                                </div>
+                                <h2>Invalidez</h2>
+
+                            </div>
+                            <div class="col-3">
+                                <div class="result-icon accident">
+                                </div>
+                                <h2>Fallecimiento accidental</h2>
+                            </div>
+                            <div class="col-3">
+                                <div class="result-icon ilt"></div>
+                                <h2>Invalidez accidental</h2>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <h3 id="modal_footer_span">NacionalRe</h3>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <h3 id="modal_footer_span">Modal Footer</h3>
-                </div>
+
             </div>
+
+
 
         </div>
 
 
+        <script type="application/javascript">
 
-    </div>
+            let loadScripts = (sources) => {
+                sources.forEach(src => {
+                    let script = document.createElement('script');
+                    script.src = src;
+                    script.async = false; //<-- the important part
+                    document.body.appendChild(script); //<-- make sure to append to body instead of head 
+                });
+            }
+
+            loadScripts([
+                "./assets/js/c2.v1.js?v=2020",
+                "./assets/js/modal_window.js?v=2020",
+                "./assets/js/modal_results.js?v=2020",
+                "./assets/js/diabetes_age_calc.js?v=2020",
+                "./assets/js/diabetes_years_calc.js?v=2020",
+                "./assets/js/imc_calc.js?v=2020",
+                "./assets/js/tobacco_calc.js?v=2020",
+                "./assets/js/alcohol_calc.js?v=2020",
+                "./assets/js/hypertension_calc.js?v=2020",
+                "./assets/js/insulin_calc.js?v=2020",
+                "./assets/js/hemoglobin_calc.js?v=2020",
+                "./assets/js/cholesterol_calc.js?v=2020",
+                "./assets/js/diabetes_form.js?v=2020"
+            ])
 
 
-    <script type="application/javascript">
-
-        let loadScripts = (sources) => {
-            sources.forEach(src => {
-                let script = document.createElement('script');
-                script.src = src;
-                script.async = false; //<-- the important part
-                document.body.appendChild(script); //<-- make sure to append to body instead of head 
-            });
-        }
-
-        loadScripts([
-            "./assets/js/c2.v1.js?v=2020",
-            "./assets/js/diabetes_calc.js?v=2020",
-            "./assets/js/imc_calc.js?v=2020",
-            "./assets/js/tobacco_calc.js?v=2020",
-            "./assets/js/alcohol_calc.js?v=2020",
-            "./assets/js/hypertension_calc.js?v=2020",
-            "./assets/js/insulin_calc.js?v=2020",
-            "./assets/js/hemoglobin_calc.js?v=2020",
-            "./assets/js/cholesterol_calc.js?v=2020",
-            "./assets/js/diabetes_form.js?v=2020"
-        ])
-
-
-    </script>
+        </script>
 
 </body>
 

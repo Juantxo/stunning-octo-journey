@@ -62,6 +62,30 @@
     color: white;
   }
 
+  .modal-window .result-icon {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: transparent;
+    background-position: center center;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-origin: initial;
+    border-radius: 60px;
+    &.life {
+      background-image: url(../images/SVG/life.svg);
+    }
+    &.disability {
+      background-image: url(../images/SVG/disability.svg);
+    }
+    &.accident {
+      background-image: url(../images/SVG/accident.svg);
+    }
+    &.ilt {
+      background-image: url(../images/SVG/ilt.svg);
+    }
+  }
   // pad
   @media only screen and (max-width: 989px) {
   }
