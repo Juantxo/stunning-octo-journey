@@ -3,13 +3,12 @@
 
     let formForm = document.forms["diabetes_form"];
     let diabetes_cal = document.getElementById('diabetes_cal');
-    //const numberFields = ["birthday", "years_diabetes", "weight", "height", "body_mass", "cigarettes", "cigars", "pipes", "wines", "beers", "spirits", "systolic", "diastolic"];
-    //let resultContainer = document.getElementById("result_container");
 
     let numericFields = formForm.querySelectorAll('input[type="number"]');
     let genderField = formForm.elements['gender'];
     let pathologyFields = document.getElementsByName('cbox');
     let dateFields = formForm.querySelectorAll('input[type="date"]');
+    let body_mass = formForm.elements['body_mass'];
 
 
 
@@ -295,23 +294,26 @@
 
 
     function setBodyMassField() {
-        let input = formForm.elements['body_mass'];
+
         if (_weight !== "" && _height !== "") {
             let w = this.c2.cmToMeter(Number(_height));
             _imc = (Number(_weight) / (Number(w) * Number(w))).toFixed(2);
-            input.value = _imc;
-            this.c2.setImcColor(input, _imc);
+            body_mass.value = _imc;
+            this.c2.setImcColor(body_mass, _imc);
             // to move
             $result.imc = this.c2.calcImc(_imc, Number(_age));
 
 
         }
         else {
-            input.value = "";
+            body_mass.value = '';
+
+
         }
     }
     function initNumericField(name) {
         let input = formForm.elements[name];
+        let parser;
         input.addEventListener("blur", (e) => {
             switch (name) {
                 case 'years_diabetes':
@@ -322,14 +324,17 @@
                 case 'weight':
 
                     _weight = e.currentTarget.value; // string 
-                    if (parseInt(_weight) <= minWeight) {
-                        modalSetup.content = 'El peso introducido es muy bajo. Debe introducir un peso mayor de ' + minWeight + '.';
+                    parser = !!parseInt(_weight) ? parseInt(_weight) : 0;
+                    if (parser <= minWeight) {
+                        modalSetup.content = 'El peso introducido es muy bajo. Debe introducir un peso mayor de ' + minWeight + ' kilos.';
                         modalSetup.action = "Por favor, asegúrese de que la cifra es correcta."
+                        _weight = '';
                         e.currentTarget.value = '';
+                        body_mass.value = '';
                         this.c2.openModalWindow(e, modalSetup);
 
                     } else {
-                        if (_height) {
+                        if (_weight !== '' && _height !== '') {
                             setBodyMassField();
                         }
 
@@ -338,14 +343,17 @@
                     break;
                 case 'height':
                     _height = e.currentTarget.value; // string 
-                    if (parseInt(_height) <= minHeight) {
-                        modalSetup.content = 'La altura introducida es muy baja. Debe introducir una altura mayor de ' + minHeight + '.';
+                    parser = !!parseInt(_height) ? parseInt(_height) : 0;
+                    if (parser <= minHeight) {
+                        modalSetup.content = 'La altura introducida es muy baja. Debe introducir una altura mayor de ' + minHeight + ' centímetros.';
                         modalSetup.action = "Por favor, asegúrese de que la cifra es correcta."
+                        _height = '';
                         e.currentTarget.value = '';
+                        body_mass.value = '';
                         this.c2.openModalWindow(e, modalSetup);
 
                     } else {
-                        if (_weight) {
+                        if (_weight !== '' && _height !== '') {
                             setBodyMassField();
                         }
                     }
