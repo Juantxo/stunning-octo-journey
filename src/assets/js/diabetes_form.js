@@ -6,6 +6,10 @@
     //const numberFields = ["birthday", "years_diabetes", "weight", "height", "body_mass", "cigarettes", "cigars", "pipes", "wines", "beers", "spirits", "systolic", "diastolic"];
     //let resultContainer = document.getElementById("result_container");
 
+    let numericFields = formForm.querySelectorAll('input[type="number"]');
+    let genderField = formForm.elements['gender'];
+    let pathologyFields = document.getElementsByName('cbox');
+    let dateFields = formForm.querySelectorAll('input[type="date"]');
 
 
 
@@ -13,25 +17,27 @@
         header: "Patología excluyente",
         content: "Esta patología no permite asegurar ningún riesgo.",
         action: "",
-        footer: "©NacionalRe. Todos los derechos reservados."
+        footer: "© NacionalRe. Todos los derechos reservados."
     }
 
     let birthdayModalSetup = {
         header: "Fecha incorrecta",
         content: "La fecha seleccionada no puede ser mayor que la fecha actual.",
         action: "Por favor, escoga una fecha de nuevo",
-        footer: "©NacionalRe. Todos los derechos reservados."
+        footer: "© NacionalRe. Todos los derechos reservados."
     }
 
     let modalSetup = {
         header: "Atención",
         content: "",
         action: "",
-        footer: "©NacionalRe. Todos los derechos reservados."
+        footer: "© NacionalRe. Todos los derechos reservados."
     }
 
 
     const dateRange = [13, 69];
+    const minHeight = 120;
+    const minWeight = 32;
     const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const systolicRange = [65, 145];
     const diastolicRange = [45, 95];
@@ -42,14 +48,14 @@
         header: "Atención: Fecha fuera de rango",
         content: "Por favor, escoga una fecha en el rango (entre " + dateRange[0] + " y " + dateRange[1] + " años de edad).",
         action: "La fecha seleccionada debe estar entre el " + this.c2.subtractYearsToDate(new Date(), dateRange[1]).toLocaleDateString('es-ES', dateOptions) + " y el " + this.c2.subtractYearsToDate(new Date(), dateRange[0]).toLocaleDateString('es-ES', dateOptions) + ".",
-        footer: "©NacionalRe"
+        footer: "© NacionalRe"
     }
 
     let fieldsOffModalSetup = {
         header: "Atención:",
         content: "Por favor, rellene correctamente los campos con mensajes en rojo.",
         action: "Existen campos erróneos o sin rellenar.",
-        footer: "NacionalRe"
+        footer: "© NacionalRe"
     }
 
     // global results
@@ -314,12 +320,36 @@
                     $result.diabetesByYears = this.c2.calcDiabetesByYears(_diabetes, Number(_yearsDiabetes));
                     break;
                 case 'weight':
+
                     _weight = e.currentTarget.value; // string 
-                    setBodyMassField();
+                    if (parseInt(_weight) <= minWeight) {
+                        modalSetup.content = 'El peso introducido es muy bajo. Debe introducir un peso mayor de ' + minWeight + '.';
+                        modalSetup.action = "Por favor, asegúrese de que la cifra es correcta."
+                        e.currentTarget.value = '';
+                        this.c2.openModalWindow(e, modalSetup);
+
+                    } else {
+                        if (_height) {
+                            setBodyMassField();
+                        }
+
+                    }
+
                     break;
                 case 'height':
                     _height = e.currentTarget.value; // string 
-                    setBodyMassField();
+                    if (parseInt(_height) <= minHeight) {
+                        modalSetup.content = 'La altura introducida es muy baja. Debe introducir una altura mayor de ' + minHeight + '.';
+                        modalSetup.action = "Por favor, asegúrese de que la cifra es correcta."
+                        e.currentTarget.value = '';
+                        this.c2.openModalWindow(e, modalSetup);
+
+                    } else {
+                        if (_weight) {
+                            setBodyMassField();
+                        }
+                    }
+
                     break;
                 case 'cigarettes':
                     _cigarettes = e.currentTarget.value; // string 
@@ -416,10 +446,6 @@
 
     }
     function initSubmit() {
-        let numericFields = formForm.querySelectorAll('input[type="number"]');
-        let genderField = formForm.elements['gender'];
-        let pathologyFields = document.getElementsByName('cbox');
-        let dateFields = formForm.querySelectorAll('input[type="date"]');
 
         // submit
         formForm.onsubmit = (e) => {
@@ -461,6 +487,10 @@
                 return false;
             }
         }
+    }
+
+    function initReset() {
+
         // submit
         formForm.onreset = (e) => {
             resetNodeFields(pathologyFields);
@@ -473,6 +503,18 @@
             resetNodeFields(dateFields);
         }
     }
+    function disableEnter() {
+
+        diabetes_cal.addEventListener('keydown', (e) => {
+            if (e.keyIdentifier == 'U+000A' || e.keyIdentifier == 'Enter' || e.keyCode == 13 || e.code == 'Enter' || e.which == 13) {
+                if (e.target.nodeName == 'INPUT' && (e.target.type == 'text' || e.target.type == 'number')) {
+                    e.preventDefault();
+                    return false;
+                }
+            }
+        },
+            true);
+    }
 
 
     let init = () => {
@@ -480,6 +522,9 @@
         this.c2.initModalWindow();
         this.c2.initModalResults();
         initSubmit();
+        initReset();
+        disableEnter();
+
 
 
     };
