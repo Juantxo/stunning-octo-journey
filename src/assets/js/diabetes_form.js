@@ -328,10 +328,15 @@
                     if (parser <= minWeight) {
                         modalSetup.content = 'El peso introducido es muy bajo. Debe introducir un peso mayor de ' + minWeight + ' kilos.';
                         modalSetup.action = "Por favor, asegúrese de que la cifra es correcta."
+
+                        if (_weight !== '') {
+                            this.c2.openModalWindow(e, modalSetup);
+
+                        }
                         _weight = '';
                         e.currentTarget.value = '';
                         body_mass.value = '';
-                        this.c2.openModalWindow(e, modalSetup);
+
 
                     } else {
                         if (_weight !== '' && _height !== '') {
@@ -342,7 +347,7 @@
 
                     break;
                 case 'height':
-                    _height = e.currentTarget.value; // string 
+                    _height = e.currentTarget.value; // string d
                     parser = !!parseInt(_height) ? parseInt(_height) : 0;
                     if (parser <= minHeight) {
                         modalSetup.content = 'La altura introducida es muy baja. Debe introducir una altura mayor de ' + minHeight + ' centímetros.';
@@ -515,7 +520,7 @@
 
         diabetes_cal.addEventListener('keydown', (e) => {
             if (e.keyIdentifier == 'U+000A' || e.keyIdentifier == 'Enter' || e.keyCode == 13 || e.code == 'Enter' || e.which == 13) {
-                if (e.target.nodeName == 'INPUT' && (e.target.type == 'text' || e.target.type == 'number')) {
+                if (e.target.nodeName == 'INPUT' && (e.target.type == 'text' || e.target.type == 'number' || e.target.type == 'date')) {
                     e.preventDefault();
                     return false;
                 }
