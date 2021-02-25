@@ -227,13 +227,11 @@
 
     function openModalResults(event, _vars, $results) {
         event.stopPropagation();
-        //let year = _vars.today.getFullYear();
-
 
         // vars
         let newDate = new Date(_vars.today);
         let year = newDate.getFullYear();
-        let today = newDate.getDate() + '/' + (newDate.getMonth() + 1) + '/' + newDate.getFullYear() + ' a las ' + newDate.getUTCHours() + ':' + newDate.getUTCMinutes() + 'h.';
+        let today = newDate.getDate() + '/' + (newDate.getMonth() + 1) + '/' + newDate.getFullYear() + ' a las ' + (newDate.getUTCHours() + 1) + ':' + newDate.getUTCMinutes() + 'h.';
         let gender = getDictionaryWord(_vars.gender)[0].value;
         let bornDate = new Date(_vars.date);
         let date = bornDate.getDate() + '/' + (bornDate.getMonth() + 1) + '/' + bornDate.getFullYear() + '';
@@ -251,9 +249,9 @@
         let tobacco = getTobacco(parseInt(_vars.cigarettes), parseInt(_vars.cigars), parseInt(_vars.pipes));
 
 
-        let constitution = gender + ' | ' + date + ' | ' + age + ' | ' + height + ' | ' + weight + ' | ' + imc + ' | ';
-        let medical = diabetes + ': ' + getYearsDiabetes(_vars.yearsDiabetes) + ' | ' + systolic + ' | ' + diastolic + ' | ' + insulin + ' | ' + hemoglobin + ' | ' + cholesterol;
-        let drugs = alcohol + ' | ' + tobacco;
+        let constitution = gender + ' | ' + date + ' | ' + age + ' | ' + height + ' | ' + weight + ' | ' + imc;
+        let medical = diabetes + ': ' + getYearsDiabetes(_vars.yearsDiabetes) + ' | ' + systolic + ' | ' + diastolic + ' | ' + insulin;
+        let drugs = hemoglobin + ' | ' + cholesterol + ' | ' + alcohol + ' | ' + tobacco;
         let total_life = getTotalResult($results, 'life');
         let total_disability = getTotalResult($results, 'disability');
         let total_accident = getTotalResult($results, 'accident');

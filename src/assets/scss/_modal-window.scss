@@ -105,6 +105,13 @@
   th {
     display: none;
   }
+  .modal-print {
+    margin: 16px 0;
+    text-align: right;
+    button {
+      cursor: pointer;
+    }
+  }
   // pad
   @media only screen and (max-width: 989px) {
   }

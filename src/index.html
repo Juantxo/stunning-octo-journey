@@ -17,7 +17,7 @@
 <body>
     <div id="diabetes_cal" class="diabetes-calc">
 
-        <div class="container">
+        <div class="container diabetes-form">
             <form action="" method="" target="_blank" class="diabetes-form" id="diabetes_form" name="diabetes_form">
                 <div class="row">
                     <div class="col-6">
@@ -169,7 +169,7 @@
 
                                 </td>
                                 <td><input type="number" id="cigarettes" name="cigarettes" min="0" max="100"
-                                        autocomplete="off">
+                                        autocomplete="off" value=0>
                                 </td>
 
                             </tr>
@@ -180,7 +180,8 @@
                                                 obligatorio.</small></span>&nbsp;</p>
 
                                 </td>
-                                <td><input type="number" id="cigars" name="cigars" min="0" max="100" autocomplete="off">
+                                <td><input type="number" id="cigars" name="cigars" min="0" max="100" autocomplete="off"
+                                        value=0>
                                 </td>
 
                             </tr>
@@ -190,7 +191,8 @@
                                                 obligatorio.</small></span>&nbsp;</p>
 
                                 </td>
-                                <td><input type="number" id="pipes" name="pipes" min="0" max="50" autocomplete="off">
+                                <td><input type="number" id="pipes" name="pipes" min="0" max="50" autocomplete="off"
+                                        value=0>
                                 </td>
                             </tr>
                         </table>
@@ -208,7 +210,8 @@
                                                 obligatorio.</small></span>&nbsp;</p>
 
                                 </td>
-                                <td><input type="number" id="wines" name="wines" min="0" max="100" autocomplete="off">
+                                <td><input type="number" id="wines" name="wines" min="0" max="100" autocomplete="off"
+                                        value=0>
                                 </td>
 
                             </tr>
@@ -219,7 +222,8 @@
                                                 obligatorio.</small></span>&nbsp;</p>
 
                                 </td>
-                                <td><input type="number" id="beers" name="beers" min="0" max="100" autocomplete="off">
+                                <td><input type="number" id="beers" name="beers" min="0" max="100" autocomplete="off"
+                                        value=0>
                                 </td>
 
                             </tr>
@@ -229,8 +233,8 @@
                                                 obligatorio.</small></span>&nbsp;</p>
 
                                 </td>
-                                <td><input type="number" id="spirits" name="spirits" min="0" max="50"
-                                        autocomplete="off">
+                                <td><input type="number" id="spirits" name="spirits" min="0" max="50" autocomplete="off"
+                                        value=0>
                                 </td>
                             </tr>
                         </table>
@@ -501,7 +505,9 @@
                                 <div id="result_table_ilt"></div>
                             </div>
                         </div>
-
+                        <div class="modal-print">
+                            <button onclick="window.print()">Imprimir</button>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <p><small><span id="result_year"></span>©NacionalRe. Todos los derechos reservados.</small></p>
