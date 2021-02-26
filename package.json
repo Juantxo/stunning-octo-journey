@@ -1,7 +1,11 @@
 {
     "name": "nacional-re-calcs",
     "version": "1.0.0",
-    "description": "",
+    "description": "Calculadora de diabetes de Nacional Re",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Juantxo/nacionalRe-dev.git"
+    },
     "main": "index.js",
     "scripts": {
         "start": "gulp",
@@ -11,9 +15,9 @@
     "author": "Juantxo Cruz <jcruz16@gmail.com> (http://www.juantxocruz.com)",
     "license": "ISC",
     "devDependencies": {
-        "@babel/core": "^7.12.9",
-        "@babel/preset-env": "^7.12.7",
-        "browser-sync": "^2.26.7",
+        "@babel/core": "^7.13.1",
+        "@babel/preset-env": "^7.13.5",
+        "browser-sync": "^2.26.14",
         "del": "^5.1.0",
         "gulp": "^4.0.2",
         "gulp-autoprefixer": "^7.0.1",
@@ -32,7 +36,7 @@
         "webpack-stream": "^5.2.1"
     },
     "dependencies": {
-        "d3": "^6.2.0",
+        "d3": "^6.5.0",
         "d3-collection": "^1.0.7"
     }
 }
